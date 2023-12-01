@@ -10,7 +10,16 @@ import os.log
 ///
 /// Similar to ``AppleSampler`` but with added MIDI capabilities
 ///
-open class MIDISampler: AppleSampler, NamedNode {
+open class MIDISampler: AppleSampler, NamedNode, Hashable {
+	public static func == (lhs: MIDISampler, rhs: MIDISampler) -> Bool {
+		lhs.name == rhs.name &&
+		lhs.audioFiles == rhs.audioFiles
+	}
+
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(name)
+	}
+
     // MARK: - Properties
 
     /// MIDI Input

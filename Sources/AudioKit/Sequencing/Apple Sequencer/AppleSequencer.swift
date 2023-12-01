@@ -520,6 +520,18 @@ open class AppleSequencer: NSObject {
         return currentPosition % length // can switch to modTime func when/if % is removed
     }
 
+	public func stepBack() {
+		if let existingMusicPlayer = musicPlayer {
+			MusicPlayerSetTime(existingMusicPlayer, currentPosition.beats - 1)
+		}
+	}
+
+	public func stepForward() {
+		if let existingMusicPlayer = musicPlayer {
+			MusicPlayerSetTime(existingMusicPlayer, currentPosition.beats + 1)
+		}
+	}
+
     // MARK: - Other Sequence Properties
 
     /// Track count
